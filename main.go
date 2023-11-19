@@ -7,6 +7,7 @@ import (
 	"interpreter/lexer"
 	"interpreter/object"
 	"interpreter/parser"
+	"log"
 	"net/http"
 	"strings"
 )
@@ -63,5 +64,14 @@ func printParserErrors(out string, errors []string) {
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	interpreterEndpoint(w, r)
-	http.ListenAndServe(":3000", nil)
+	http.ListenAndServe(":8080", nil)
+}
+
+func main() {
+	http.HandleFunc("/interpreter", Handler)
+
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatalf("Failed to start server: %v", err)
+	}
 }

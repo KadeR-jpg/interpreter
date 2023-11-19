@@ -54,7 +54,7 @@ type Error struct {
 type Function struct {
 	Parameters []*ast.Identifier
 	Body       *ast.BlockStatement
-	Env        *Environment
+	Env        *environment.Environment
 }
 
 type Builtin struct {
